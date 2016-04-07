@@ -36,18 +36,16 @@ var bot = controller.spawn({
 }).startRTM();
 
 
-if (process.env.REDISCLOUD_URL) {
-    var redisURL = url.parse(process.env.REDISCLOUD_URL);
-    var redisStorage = redis({
-        namespace: 'botkit-example',
-        host: redisURL.hostname,
-        port: redisURL.port,
-        auth_pass: redisURL.auth.split(":")[1]
-    });
-    var controller = Botkit.slackbot({
-        storage: redisStorage
-    });
-}
+var redisURL = url.parse(process.env.REDISCLOUD_URL);
+var redisStorage = redis({
+    namespace: 'botkit-example',
+    host: redisURL.hostname,
+    port: redisURL.port,
+    auth_pass: redisURL.auth.split(":")[1]
+});
+var controller = Botkit.slackbot({
+    storage: redisStorage
+});
 
 // Triggers
 
