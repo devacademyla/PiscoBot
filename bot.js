@@ -15,40 +15,28 @@ if (!process.env.SLACK_API_TOKEN) {
 }
 
 // Load Botkit dependencies
-var Botkit = require('botkit/lib/Botkit.js');
-var redis = require('botkit/lib/storage/redis_storage.js');
+var controller;
 var os = require('os');
 var url = require('url');
 var http = require('http');
-var scripts = require('./scripts/_index');
-
-// Set debugging to env variable
-var controller
-if (process.env.PISCOBOT_PRODUCTION) {
+var redisURL = url.parse(process.env.REDISCLOUD_URL);
+var Botkit = require('botkit'),
+    redisConfig = {
+        namespace: 'botkit-example',
+        host: redisURL.hostname,
+        port: redisURL.port,
+        auth_pass: redisURL.auth.split(":")[1]
+    },
+    redisStorage = require('botkit-storage-redis')(redisConfig),
     controller = Botkit.slackbot({
         debug: false,
+        storage: redisStorage
     });
-} else {
-    controller = Botkit.slackbot({
-        debug: true,
-    });
-}
+var scripts = require('./scripts/_index');
 
 var bot = controller.spawn({
     token: process.env.SLACK_API_TOKEN
 }).startRTM();
-
-
-var redisURL = url.parse(process.env.REDISCLOUD_URL);
-var redisStorage = redis({
-    namespace: 'botkit-example',
-    host: redisURL.hostname,
-    port: redisURL.port,
-    auth_pass: redisURL.auth.split(":")[1]
-});
-var controller = Botkit.slackbot({
-    storage: redisStorage
-});
 
 // Triggers
 
@@ -56,7 +44,7 @@ controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', funct
     scripts.response.hello(bot, controller, message);
 });
 controller.hears(['call me (.*)', 'my name is (.*)'], 'direct_message,direct_mention,mention', function(bot, message) {
-    scripts.response.callme(bot, controller, message);
+    scripts.response.callMe(bot, controller, message);
 });
 controller.hears(['what is my name', 'what\'s my name', 'who am i'], 'direct_message,direct_mention,mention', function(bot, message) {
     scripts.response.name(bot, controller, message);

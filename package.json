@@ -1,6 +1,6 @@
 {
   "name": "piscobot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Enjoy responsibly.",
   "main": "bot.js",
   "scripts": {
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/devacademyla/PiscoBot#readme",
   "dependencies": {
     "botkit": "0.0.15",
+    "botkit-storage-redis": "^1.0.1",
     "redis": "2.4.2",
     "request": "^2.70.0"
   }

@@ -118,7 +118,7 @@ module.exports = {
         hello(bot, controller, message)
     },
     name: function(bot, controller, message) {
-        whoami(bot, controller, message)
+        name(bot, controller, message)
     },
     callMe: function(bot, controller, message) {
         callme(bot, controller, message)
