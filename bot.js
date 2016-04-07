@@ -17,6 +17,7 @@ if (!process.env.SLACK_API_TOKEN) {
 // Load Botkit dependencies
 var Botkit = require('botkit/lib/Botkit.js');
 var os = require('os');
+var url = require('url');
 var scripts = require('./scripts/_index');
 
 // Set debugging to env variable
