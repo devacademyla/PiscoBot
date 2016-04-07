@@ -1,0 +1,30 @@
+{
+  "name": "piscobot",
+  "version": "0.0.1",
+  "description": "Enjoy responsibly.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devacademyla/PiscoBot.git"
+  },
+  "keywords": [
+    "devacademy",
+    "howdy",
+    "botkit"
+  ],
+  "author": "devAcademy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devacademyla/PiscoBot/issues"
+  },
+  "homepage": "https://github.com/devacademyla/PiscoBot#readme",
+  "dependencies": {
+    "botkit": "0.0.15",
+    "redis": "2.4.2",
+    "request": "^2.70.0"
+  }
+}
