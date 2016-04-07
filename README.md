@@ -5,4 +5,4 @@ Enjoy responsibly. :tropical_drink:
 
 ## License
 
-(MIT License)[LICENSE]
+[MIT License](LICENSE)
