@@ -1,6 +1,6 @@
 # PiscoBot
 
-Enjoy responsibly. :cocktail:
+Enjoy responsibly. :tropical_drink:
 
 
 ## License
