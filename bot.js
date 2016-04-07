@@ -19,6 +19,7 @@ var Botkit = require('botkit/lib/Botkit.js');
 var redis = require('botkit/lib/storage/redis_storage');
 var os = require('os');
 var url = require('url');
+var http = require('http');
 var scripts = require('./scripts/_index');
 
 // Set debugging to env variable
@@ -107,3 +108,10 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
+
+
+// Keep Heroku Dyno awake
+http.createServer(function(request, response) {
+    response.writeHead(200, { 'Content-Type': 'text/plain' });
+    response.end('Oops, sorry, I\'m awake now!');
+}).listen(process.env.PORT || 5000);
