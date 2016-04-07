@@ -16,6 +16,7 @@ if (!process.env.SLACK_API_TOKEN) {
 
 // Load Botkit dependencies
 var Botkit = require('botkit/lib/Botkit.js');
+var redis = require('botkit/lib/storage/redis_storage');
 var os = require('os');
 var url = require('url');
 var scripts = require('./scripts/_index');
