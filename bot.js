@@ -7,99 +7,51 @@
 // ========================================
 //        Please enjoy responsibly.
 
-
-// Check for API token
-if (!process.env.SLACK_API_TOKEN) {
-    console.log('Error: Specify token in environment');
-    process.exit(1);
-}
-
-// Load Botkit dependencies
-var controller;
-var os = require('os');
-var url = require('url');
+// Load PiscoBot library
+var lib = require('./lib');
 var http = require('http');
-var redisURL = url.parse(process.env.REDISCLOUD_URL);
-var Botkit = require('botkit'),
-    redisConfig = {
-        namespace: 'botkit-example',
-        host: redisURL.hostname,
-        port: redisURL.port,
-        auth_pass: redisURL.auth.split(":")[1]
-    },
-    redisStorage = require('botkit-storage-redis')(redisConfig),
-    controller = Botkit.slackbot({
-        debug: false,
-        storage: redisStorage
-    });
-var scripts = require('./scripts/_index');
 
-var bot = controller.spawn({
-    token: process.env.SLACK_API_TOKEN
-}).startRTM();
+// Declare variables
+var bot = lib.core.bot
+var controller = lib.core.controller
+var scriptIndex = lib.scripts.index()
+var scriptContext = lib.scripts.context
 
-// Triggers
-
-controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', function(bot, message) {
-    scripts.response.hello(bot, controller, message);
-});
-controller.hears(['call me (.*)', 'my name is (.*)'], 'direct_message,direct_mention,mention', function(bot, message) {
-    scripts.response.callMe(bot, controller, message);
-});
-controller.hears(['what is my name', 'what\'s my name', 'who am i'], 'direct_message,direct_mention,mention', function(bot, message) {
-    scripts.response.name(bot, controller, message);
-});
-// controller.hears(['what do you know about me', 'who am i'], 'direct_message,direct_mention,mention', function(bot, message) {
-//     scripts.response.whoami(bot, controller, message);
-// });
-controller.hears(['ping'], 'direct_message,direct_mention', function(bot, message) {
-    scripts.response.ping(bot, controller, message);
-});
-controller.hears(['shutdown'], 'direct_message,direct_mention,mention', function(bot, message) {
-    scripts.command.shutDown(bot, controller, message);
-});
-controller.hears(['spotify me (.*)'], 'direct_message,direct_mention', function(bot, message) {
-    scripts.command.spotify(bot, controller, message);
-});
-controller.hears(['8ball'], 'direct_message,direct_mention', function(bot, message) {
-    scripts.random.eightBall(bot, controller, message);
-});
-
-
-controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
-    'direct_message,direct_mention,mention',
-    function(bot, message) {
-
-        var hostname = os.hostname();
-        var uptime = formatUptime(process.uptime());
-
-        bot.reply(message,
-            ':robot_face: I\'m <@' + bot.identity.name +
-            '>! I have been running for `' + uptime + '` on `' + hostname + '`.');
-
-    });
-
-function formatUptime(uptime) {
-    var unit = 'second';
-    if (uptime > 60) {
-        uptime = uptime / 60;
-        unit = 'minute';
+// Seperate listening into different functions
+controller.hears(scriptIndex, ['direct_message'], function(bot, message) {
+    scriptMatches = scriptContext(message.match[0], 'direct_message');
+    if (scriptMatches[0] === true) {
+        command = scriptMatches[1];
+        command(bot, controller, message);
     }
-    if (uptime > 60) {
-        uptime = uptime / 60;
-        unit = 'hour';
-    }
-    if (uptime != 1) {
-        unit = unit + 's';
+});
+controller.hears(scriptIndex, ['direct_mention'], function(bot, message) {
+    scriptMatches = scriptContext(message.match[0], 'direct_mention');
+    if (scriptMatches[0] === true) {
+        command = scriptMatches[1];
+        command(bot, controller, message);
     }
 
-    uptime = uptime + ' ' + unit;
-    return uptime;
-}
+});
+controller.hears(scriptIndex, ['mention'], function(bot, message) {
+    scriptMatches = scriptContext(message.match[0], 'mention');
+    if (scriptMatches[0] === true) {
+        command = scriptMatches[1];
+        command(bot, controller, message);
+    }
 
+});
+controller.hears(scriptIndex, ['ambient'], function(bot, message) {
+    scriptMatches = scriptContext(message.match[0], 'ambient');
+    if (scriptMatches[0] === true) {
+        command = scriptMatches[1];
+        command(bot, controller, message);
+    }
 
-// Keep Heroku Dyno awake
+});
+
+// Create HTTP service to let bot stay alive
 http.createServer(function(request, response) {
     response.writeHead(200, { 'Content-Type': 'text/plain' });
     response.end('Oops, sorry, I\'m awake now!');
-}).listen(process.env.PORT || 5000);
+}).listen(process.env.PORT || 3000);

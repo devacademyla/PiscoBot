@@ -1,28 +1,5 @@
 var request = require('request');
 
-function shutDown(bot, controller, message) {
-    bot.startConversation(message, function(err, convo) {
-
-        convo.ask('Are you sure you want me to shutdown?', [{
-            pattern: bot.utterances.yes,
-            callback: function(response, convo) {
-                convo.say('Bye!');
-                convo.next();
-                setTimeout(function() {
-                    process.exit();
-                }, 3000);
-            }
-        }, {
-            pattern: bot.utterances.no,
-            default: true,
-            callback: function(response, convo) {
-                convo.say('*Phew!*');
-                convo.next();
-            }
-        }]);
-    });
-}
-
 function spotify(bot, controller, message) {
     var req = request.get('https://api.spotify.com/v1/search?q=' + message.match[1] + '&type=track', function(err, res, body) {
         console.log(message.match[1])
@@ -42,10 +19,10 @@ function spotify(bot, controller, message) {
 }
 
 module.exports = {
-    shutDown: function(bot, controller, message) {
-        shutDown(bot, controller, message)
-    },
-    spotify: function(bot, controller, message) {
-        spotify(bot, controller, message)
-    }
+    name: 'spotify me',
+    author: 'Daniel Gallegos (thattacoguy)',
+    patterns: ['spotify me (.*)'],
+    types: ['direct_message', 'direct_mention'],
+    description: 'Search for a song on Spotify',
+    command: spotify
 }
