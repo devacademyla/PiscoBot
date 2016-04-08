@@ -1,4 +1,4 @@
-var helpers = require('./../helpers/');
+var helpers = require(__dirname + '/../../helpers/');
 
 eightBallStart = function(response, convo) {
     convo.ask("Ahh, you have come to seek answers! :grin:\nWhat *YES or NO question* would you like to ask?", function(response, convo) {
