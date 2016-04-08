@@ -63,7 +63,7 @@ function whoami(bot, controller, message) {
 module.exports = {
     name: 'whoami',
     author: 'HowdyAI (howdyai)',
-    patterns: ['what is my name', 'who am i'],
+    patterns: ['what is my name', 'who am i', 'what\'s my name'],
     types: ['direct_message', 'direct_mention'],
     description: 'What _is_ your name, anyway?',
     command: whoami
