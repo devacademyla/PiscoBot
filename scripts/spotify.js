@@ -2,7 +2,6 @@ var request = require('request');
 
 function spotify(bot, controller, message) {
     var req = request.get('https://api.spotify.com/v1/search?q=' + message.match[1] + '&type=track', function(err, res, body) {
-        console.log(message.match[1])
         if (!err && res.statusCode == 200) {
             var response = JSON.parse(body);
             if (response.tracks.items.length > 0 && response.tracks.items[0].external_urls !== null) {
@@ -11,8 +10,6 @@ function spotify(bot, controller, message) {
                 bot.reply(message, "Even _I_ couldn't find that dumb song called \"" + query + "\"! :unamused:\nTry searching for some _better_ music. :face_with_rolling_eyes:");
             }
         } else {
-            console.log(err)
-            console.log(res.statusCode)
             bot.reply(message, "Oops! Something weird happened and I couldn't find that song. :confused:");
         }
     });
