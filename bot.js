@@ -9,13 +9,13 @@
 
 // Load PiscoBot library
 var lib = require('./lib');
-var http = require('http');
 
 // Declare variables
 var bot = lib.core.bot
 var controller = lib.core.controller
 var scriptIndex = lib.scripts.index()
 var scriptContext = lib.scripts.context
+
 
 // Seperate listening into different functions
 controller.hears(scriptIndex, ['direct_message'], function(bot, message) {
@@ -50,8 +50,5 @@ controller.hears(scriptIndex, ['ambient'], function(bot, message) {
 
 });
 
-// Create HTTP service to let bot stay alive
-http.createServer(function(request, response) {
-    response.writeHead(200, { 'Content-Type': 'text/plain' });
-    response.end('Oops, sorry, I\'m awake now!');
-}).listen(process.env.PORT || 3000);
+// Keep bot alive and kicking
+var keepAlive = lib.keepalive.start(controller)
