@@ -1,8 +1,7 @@
 var helpers = require('./../helpers/');
 
 eightBallStart = function(response, convo) {
-    convo.ask("Ahh, you have come to seek the wisdom of the universe! :grin:\nWhat YES or NO question would you like to ask?", function(response, convo) {
-
+    convo.ask("Ahh, you have come to seek answers! :grin:\nWhat *YES or NO question* would you like to ask?", function(response, convo) {
         answers = [
             'It is certain!',
             'It is decidedly so.',
@@ -24,8 +23,16 @@ eightBallStart = function(response, convo) {
             'Outlook... not so good.',
             'Very doubtful.'
         ];
+        responses = [
+            'Lemme think about that',
+            'Let\'s see here',
+            'One moment, please',
+            'Hold on, lemme check',
+            'Wait, almost got it'
+        ];
         wisdom = helpers.randomFromArray(answers);
-        convo.say('Let me see here...\n:crystal_ball: My crystal ball says... _*' + wisdom + '*_')
+        response = helpers.randomFromArray(responses);
+        convo.say(':thinking_face: ' + response +'...\n:crystal_ball: My crystal ball says... _*' + wisdom + '*_')
         convo.next();
     });
 }
