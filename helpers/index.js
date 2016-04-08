@@ -1,6 +1,7 @@
+function randomFromArray(array) {
+    random = array[Math.floor(Math.random() * array.length)];
+    return random;
+}
 module.exports = {
-    randomFromArray: function(array) {
-        random = array[Math.floor(Math.random() * array.length)];
-        return random;
-    },
+    randomFromArray: randomFromArray
 };
