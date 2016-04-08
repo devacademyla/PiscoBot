@@ -4,7 +4,7 @@ function hello(bot, controller, message) {
             bot.api.reactions.add({
                 timestamp: message.ts,
                 channel: message.channel,
-                name: 'open_mouth',
+                name: 'smile',
             }, function(err, res) {
                 if (err) {
                     bot.botkit.log('Failed to add emoji reaction :(', err);
@@ -15,7 +15,7 @@ function hello(bot, controller, message) {
             bot.api.reactions.add({
                 timestamp: message.ts,
                 channel: message.channel,
-                name: 'smile',
+                name: 'open_mouth',
             }, function(err, res) {
                 if (err) {
                     bot.botkit.log('Failed to add emoji reaction :(', err);
