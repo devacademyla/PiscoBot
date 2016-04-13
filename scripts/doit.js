@@ -13,7 +13,7 @@ function doIt(bot, controller, message) {
 module.exports = {
     name: 'doit',
     author: 'Daniel Gallegos (thattacoguy)',
-    patterns: ['do.*it'],
+    patterns: ['do.it'],
     types: ['direct_message', 'direct_mention', 'ambient', 'mention'],
     description: 'Provide LeBoufian motivation',
     command: doIt

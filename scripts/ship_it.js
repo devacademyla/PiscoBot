@@ -20,7 +20,7 @@ function shipIt(bot, controller, message) {
 module.exports = {
     name: 'shipit',
     author: 'Daniel Gallegos (thattacoguy)',
-    patterns: ['ship.*it'],
+    patterns: ['ship.it'],
     types: ['direct_message', 'direct_mention', 'ambient', 'mention'],
     description: 'Provide Sciuridaedean motivation',
     command: shipIt
