@@ -4,7 +4,7 @@ function thanks(bot, controller, message) {
     bot.api.reactions.add({
         timestamp: message.ts,
         channel: message.channel,
-        name: ':+1:',
+        name: '+1',
     }, function(err, res) {
         if (err) {
             bot.botkit.log('Failed to add emoji reaction :(', err);

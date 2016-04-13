@@ -2,10 +2,10 @@ var helpers = require(__dirname + '/../helpers/');
 
 function piscoGithub(bot, controller, message) {
     emoji = [
-        ':thinking_face:',
-        ':open_mouth:',
-        ':face_with_rolling_eyes:',
-        ':sweat_smile:'
+        'thinking_face',
+        'open_mouth',
+        'face_with_rolling_eyes',
+        'sweat_smile'
     ]
     emote = helpers.randomFromArray(emoji);
     bot.api.reactions.add({
