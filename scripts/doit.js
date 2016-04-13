@@ -1,4 +1,4 @@
-var helpers = require(__dirname + '/../../helpers/');
+var helpers = require(__dirname + '/../helpers/');
 function doIt(bot, controller, message) {
     doIt = [
         "http://i.giphy.com/10FUfTApAeoZK8.gif",

@@ -1,4 +1,4 @@
-var helpers = require(__dirname + '/../../helpers/');
+var helpers = require(__dirname + '/../helpers/');
 
 function shipIt(bot, controller, message) {
     shipIt = [
