@@ -28,7 +28,7 @@ function hello(bot, controller, message) {
 module.exports = {
     name: 'hello',
     author: 'Daniel Gallegos (thattacoguy)',
-    patterns: ['hello', 'hi'],
+    patterns: ['hello', '(hi | hi)'],
     types: ['direct_message', 'direct_mention', 'mention'],
     description: 'Say hello!',
     command: hello

@@ -1,8 +1,8 @@
-function ping(bot, controller, message) {
+function trelloFinish(bot, controller, message) {
     bot.api.reactions.add({
         timestamp: message.ts,
         channel: message.channel,
-        name: 'tropical_drink',
+        name: 'clap',
     }, function(err, res) {
         if (err) {
             bot.botkit.log('Failed to add emoji reaction :(', err);
@@ -10,10 +10,10 @@ function ping(bot, controller, message) {
     });
 }
 module.exports = {
-    name: 'ping',
+    name: 'Trello Finish Card',
     author: 'Daniel Gallegos (thattacoguy)',
-    patterns: ['pisco'],
-    types: ['ambient', 'direct_message', 'direct_mention', 'mention'],
-    description: 'Ping the bot!',
-    command: ping
+    patterns: ['Card moved: .* from list .* to list .Finished.'],
+    types: ['bot_message'],
+    description: 'Yay, you did it!',
+    command: trelloFinish
 }
