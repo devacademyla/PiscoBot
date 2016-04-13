@@ -31,7 +31,7 @@ module.exports = {
     name: 'PiscoBot GitHub',
     author: 'Daniel Gallegos (thattacoguy)',
     patterns: ['PiscoBot.*new commits by', 'PiscoBot.*new commit by'],
-    types: ['ambient'],
+    types: ['bot_message'],
     description: 'Dude. Meta.',
     command: piscoGithub
 }
