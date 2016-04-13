@@ -32,6 +32,13 @@ controller.hears(scriptIndex, ['direct_mention'], function(bot, message) {
         command(bot, controller, message);
     }
 });
+controller.hears(scriptIndex, ['bot_message'], function(bot, message) {
+    scriptMatches = scriptContext(message.match[0], 'bot_message');
+    if (scriptMatches && scriptMatches[0] === true) {
+        command = scriptMatches[1];
+        command(bot, controller, message);
+    }
+});
 controller.hears(scriptIndex, ['mention'], function(bot, message) {
     scriptMatches = scriptContext(message.match[0], 'mention');
     if (scriptMatches && scriptMatches[0] === true) {

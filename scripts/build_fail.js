@@ -1,4 +1,4 @@
-function buildErrored(bot, controller, message) {
+function buildFailed(bot, controller, message) {
     bot.api.reactions.add({
         timestamp: message.ts,
         channel: message.channel,
@@ -11,10 +11,10 @@ function buildErrored(bot, controller, message) {
     bot.reply(message, message.match[1] + ' did it! :speak_no_evil:')
 }
 module.exports = {
-    name: 'Build Errored',
+    name: 'Build Failed',
     author: 'Daniel Gallegos (thattacoguy)',
-    patterns: ['by (.*) failed in'],
-    types: ['ambient'],
+    patterns: ['by (.*) (failed|errored) in'],
+    types: ['bot_message'],
     description: 'Oops.',
-    command: buildErrored
+    command: buildFailed
 }
