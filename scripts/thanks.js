@@ -1,3 +1,5 @@
+var helpers = require(__dirname + '/../helpers/');
+
 function thanks(bot, controller, message) {
     bot.api.reactions.add({
         timestamp: message.ts,

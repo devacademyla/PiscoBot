@@ -1,3 +1,5 @@
+var helpers = require(__dirname + '/../helpers/');
+
 function piscoGithub(bot, controller, message) {
     emoji = [
         ':thinking_face:',
