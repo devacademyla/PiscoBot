@@ -58,7 +58,7 @@ controller.hears(scriptIndex, ['ambient'], function(bot, message) {
 controller.on('bot_message', function(bot, message) {
   async.each(scriptIndex, function(matcher, callback) {
     var regex = new RegExp(matcher, 'i');
-    var match = message.match(regex);
+    var match = message.text.match(regex);
     if (match) {
       scriptMatches = scriptContext(match[0], 'bot_message');
       if (scriptMatches && scriptMatches[0] === true) {
