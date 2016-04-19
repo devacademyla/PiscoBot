@@ -10,7 +10,7 @@ PiscoBot is a project built on BotKit, designed to make your life in Slack easie
 
 ## Documentation
 
-`[TODO]`
+Documentation can be found [here](https://github.com/devacademyla/PiscoBot/wiki).
 
 ## License
 
