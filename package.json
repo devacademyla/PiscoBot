@@ -4,7 +4,7 @@
   "description": "Please enjoy responsibly.",
   "main": "bot.js",
   "scripts": {
-    "test": "find ./tests -name '*.test.js' | xargs mocha -R spec && jshint . --exclude \"./node_modules\" && jscs .",
+    "test": "_mocha -u exports --recursive && jshint . --exclude node_modules,coverage && jscs .",
     "start": "node bot.js"
   },
   "repository": {

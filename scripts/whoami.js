@@ -28,9 +28,9 @@ function whoami(bot, controller, message) {
                 convo.repeat();
                 convo.next();
               },
-            }, ]);
+            },]);
             convo.next();
-          }, { key: 'nickname' });
+          }, {key: 'nickname'});
           convo.on('end', function(convo) {
             if (convo.status === 'completed') {
               msg = 'OK! Lemme write that down somewhere...';
