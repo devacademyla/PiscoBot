@@ -7,12 +7,13 @@ var helpers = require(__dirname + '/../helpers/');
 
 function doIt(bot, controller, message) {
 
-  var error, result;
+  var error;
+  var result;
   try {
-    result = mathjs['eval'](message.match[3]);
+    result = mathjs.eval(message.match[3]);
     var msgs = [
       'I punched that in and it came out to',
-      'Seems that that equals',
+      'That seems to equal',
       'That equals',
       'That is _probably_',
     ];

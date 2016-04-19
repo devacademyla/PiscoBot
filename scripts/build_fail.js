@@ -10,7 +10,8 @@ function buildFailed(bot, controller, message) {
       bot.botkit.log('Failed to add emoji reaction :(', err);
     }
   });
-  bot.reply(message, message.match[1] + ' did it! :speak_no_evil:');
+  var msg = message.match[1] + ' did it! :speak_no_evil:';
+  bot.reply(message, msg);
 }
 module.exports = {
   name: 'Build Failed',

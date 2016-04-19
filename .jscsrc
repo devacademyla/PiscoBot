@@ -1,5 +1,5 @@
 {
-	"preset": "node-style-guide",
-    "excludeFiles": ["node_modules/**"],
+	"preset": "google",
+    "excludeFiles": ["node_modules/**","coverage/**"],
     "requireCurlyBraces": ["!case"]
 }
