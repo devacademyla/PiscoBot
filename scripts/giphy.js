@@ -10,7 +10,7 @@ function giphy(bot, controller, message) {
     if (!err && res.statusCode === 200) {
       var response = JSON.parse(body);
       var gifs = response.data.length;
-      var urls = response.data[0].images.fixed_height.url;
+      var urls = response.data[0].images.fixedHeight.url;
       if (gifs > 0 && urls !== null) {
         bot.reply(message, urls);
       } else {
