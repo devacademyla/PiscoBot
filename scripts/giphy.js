@@ -2,10 +2,10 @@
 
 var request = require('request');
 
-function spotify(bot, controller, message) {
+function giphy(bot, controller, message) {
   var msg = '';
-  var url = 'https://api.spotify.com/v1/search?q=';
-  url += message.match[1] + '&type=track';
+  var url = 'http://api.giphy.com/v1/gifs/search?q=';
+  url += message.match[1] + '&api_key=dc6zaTOxFJmzC';
   request.get(url, function(err, res, body) {
     if (!err && res.statusCode === 200) {
       var response = JSON.parse(body);
@@ -27,7 +27,7 @@ function spotify(bot, controller, message) {
 module.exports = {
   name: 'giphy me',
   author: 'Deiby Toralva (deibytb)',
-  //patterns: ['giphy me (.*)'],
+  patterns: ['giphy me (.*)'],
   types: ['direct_message', 'direct_mention'],
   description: 'Search for a gif on Giphy',
   command: giphy,
