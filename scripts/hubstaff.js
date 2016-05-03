@@ -24,6 +24,9 @@ function getHubstaffHours(bot, message, type) {
     if (month < 10) {
       month = '0' + month.toString();
     }
+    if (day < 10) {
+      day = '0' + day.toString();
+    }
     var year = now.getFullYear();
     date = year.toString() + month.toString() + day.toString();
     hyphenDate = year.toString();
