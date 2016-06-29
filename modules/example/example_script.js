@@ -12,8 +12,10 @@ module.exports = {
     // {Format: dd/mm/yyyy}
 };
 
-// {Require anything you need up here.}
+// {You should always require this file, just in case.}
 var helpers = require('./../../helpers');
+
+// {Require anything else you need up here.}
 
 // {We're using the native .hears() function from BotKit in most of our scripts.
 // It's written really well, so why reinvent the wheel?}
@@ -24,7 +26,7 @@ piscobot.hears('example', ['direct_mention', 'mention'],
         // {This moduleAllowed check is to make sure that this command can be
         // executed in a channel. It's an an important part of all of the 
         // scripts we have in PiscoBot.}
-        var moduleAllowed = helpers.module.checkPermissions();
+        var moduleAllowed = helpers.module.checkPermissions(bot, message);
         if (moduleAllowed) {
             // {If the module is allowed, run any code that's in here. This is 
             // where you'll be writing your script!}
@@ -36,7 +38,7 @@ piscobot.hears('example', ['direct_mention', 'mention'],
         } else {
             // {If the module isn't allowed, throw an error message privately
             // to the user.}
-            helpers.modules.disabledMessage();
+            helpers.modules.disabledMessage(bot, message);
         }
     }
 );
