@@ -26,6 +26,7 @@
   "dependencies": {
     "botkit": "^0.2.2",
     "botkit-storage-mongo": "^1.0.3",
+    "eslint": "^2.13.1",
     "require-all": "^2.0.0"
   }
 }
