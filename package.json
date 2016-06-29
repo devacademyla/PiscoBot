@@ -4,7 +4,7 @@
   "description": "Please enjoy responsibly.",
   "main": "bot.js",
   "scripts": {
-    "test": "_mocha -u exports --recursive && jshint . --exclude node_modules,coverage && jscs .",
+    "test": "eslint . --env node --ignore-path .gitignore",
     "start": "node bot.js"
   },
   "repository": {
@@ -14,7 +14,8 @@
   "keywords": [
     "devacademy",
     "howdy",
-    "botkit"
+    "botkit",
+    "slack"
   ],
   "author": "devAcademy",
   "license": "MIT",
@@ -23,7 +24,8 @@
   },
   "homepage": "https://github.com/devacademyla/PiscoBot#readme",
   "dependencies": {
-    "botkit": "^0.1.1",
-    "botkit-storage-redis": "^1.0.1",
-  },
+    "botkit": "^0.2.2",
+    "botkit-storage-mongo": "^1.0.3",
+    "require-all": "^2.0.0"
+  }
 }
