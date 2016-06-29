@@ -1,6 +1,6 @@
 {
   "name": "piscobot",
-  "version": "0.2.0",
+  "version": "2.0.0",
   "description": "Please enjoy responsibly.",
   "main": "bot.js",
   "scripts": {
@@ -23,19 +23,7 @@
   },
   "homepage": "https://github.com/devacademyla/PiscoBot#readme",
   "dependencies": {
-    "async": "^2.0.0-rc.3",
     "botkit": "^0.1.1",
     "botkit-storage-redis": "^1.0.1",
-    "cron": "^1.1.0",
-    "mathjs": "^3.2.0",
-    "redis": "^2.6.0-1",
-    "request": "^2.72.0",
-    "require-all": "^2.0.0"
   },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "jscs": "^3.0.3",
-    "jshint": "^2.9.1",
-    "mocha": "^2.4.5"
-  }
 }
