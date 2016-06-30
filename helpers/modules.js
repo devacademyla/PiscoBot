@@ -1,12 +1,11 @@
-function checkPermissions(bot, message) {
+// function checkPermissions(bot, message) {
+//     return true;
+// }
 
-}
+// function disabledMessage(bot, message) {
+// }
 
-function disabledMessage(bot, message) {
-    
-}
-
-module.exports = {
-    checkPermissions: checkPermissions,
-    disabledMessage: disabledMessage
-}
+// module.exports = {
+//     checkPermissions: checkPermissions,
+//     disabledMessage: disabledMessage
+// };

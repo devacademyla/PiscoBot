@@ -7,6 +7,6 @@
 piscobot.hears('hello', ['direct_message', 'direct_mention', 'mention'],
 /* eslint-enable */
     function(bot, message) {
-        bot.reply(message, 'Hello yourself, .');
+        bot.reply(message, 'Hello yourself, ' + message.user + '.');
     }
 );
