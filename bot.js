@@ -32,7 +32,21 @@ if (process.env.SLACK_API_TOKEN) {
         // Grabs the token from the currently running process. 
         token: process.env.SLACK_API_TOKEN
     }).startRTM();
+} else {
+    console.log(
+        'WARNING: No SLACK_API_TOKEN present' +
+        ', can\'t connect to Slack!'
+    );
+    console.log(
+        'NOTICE: Exiting app because we can\'t' +
+        ' really do anything without a token.'
+    );
+    process.end(1);
 }
+
+// Set more global variables.
+
+global._ = require('underscore');
 
 /* eslint-disable */
 var scripts = require('require-all')({

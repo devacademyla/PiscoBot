@@ -27,7 +27,9 @@
     "botkit": "^0.2.2",
     "botkit-storage-mongo": "^1.0.3",
     "eslint": "^2.13.1",
+    "mathjs": "^3.2.1",
     "mongodb": "^2.1.18",
-    "require-all": "^2.0.0"
+    "require-all": "^2.0.0",
+    "underscore": "^1.8.3"
   }
 }
