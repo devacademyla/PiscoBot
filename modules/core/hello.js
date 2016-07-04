@@ -12,7 +12,7 @@ global.piscobot.hears('hello', ['direct_message', 'direct_mention', 'mention'],
         bot.api.reactions.add({
           timestamp: message.ts,
           channel: message.channel,
-          name: 'smile',
+          name: 'smile'
         }, function(err) {
           if (err) {
             bot.botkit.log('Failed to add emoji reaction :(', err);
@@ -23,7 +23,7 @@ global.piscobot.hears('hello', ['direct_message', 'direct_mention', 'mention'],
         bot.api.reactions.add({
           timestamp: message.ts,
           channel: message.channel,
-          name: 'open_mouth',
+          name: 'open_mouth'
         }, function(err) {
           if (err) {
             bot.botkit.log('Failed to add emoji reaction :(', err);

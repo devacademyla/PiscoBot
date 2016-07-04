@@ -21,19 +21,19 @@ global.piscobot.hears(
                 pattern: bot.utterances.yes,
                 callback: function(response, convo) {
                   convo.next();
-                },
+                }
               }, {
                 pattern: bot.utterances.no,
                 callback: function(response, convo) {
                   convo.stop();
-                },
+                }
               }, {
                 default: true,
                 callback: function(response, convo) {
                   convo.repeat();
                   convo.next();
-                },
-              }, ]);
+                }
+              }]);
               convo.next();
             }, { key: 'nickname' });
             convo.on('end', function(convo) {
@@ -43,7 +43,7 @@ global.piscobot.hears(
                 global.piscobot.storage.users.get(message.user, function(err, user) {
                   if (!user) {
                     user = {
-                      id: message.user,
+                      id: message.user
                     };
                   }
                   user.name = convo.extractResponse('nickname');
