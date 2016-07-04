@@ -14,43 +14,51 @@ var Botkit = require('botkit');
 
 var botConfig = {};
 if (process.env.DEBUG) {
-    botConfig = {
-        debug: true,
-        logLevel: 7
-    };
+  botConfig = {
+    debug: true,
+    logLevel: 7
+  };
 } else {
-    botConfig = {
-        debug: false
-    };
+  botConfig = {
+    debug: false
+  };
 }
 
+// Set the bot controller as a global variable which can be accessed in 
+// any file without having to pass it through anything.
 global.piscobot = Botkit.slackbot(botConfig);
 
+// Set a global `botHelp` array that can be modified by any script
+// to be able to include itself in the `help` command. 
+global.botHelp = [];
+
+
+// If there's a SLACK_API_TOKEN,
 if (process.env.SLACK_API_TOKEN) {
-    // Connect the bot to Slack's RTM API.
-    global.piscobot.spawn({
-        // Grabs the token from the currently running process. 
-        token: process.env.SLACK_API_TOKEN
-    }).startRTM();
+  // Connect the bot to Slack's RTM API.
+  global.piscobot.spawn({
+    // Grab the token from the currently running process. 
+    token: process.env.SLACK_API_TOKEN
+  }).startRTM();
 } else {
-    console.log(
-        'WARNING: No SLACK_API_TOKEN present' +
-        ', can\'t connect to Slack!'
-    );
-    console.log(
-        'NOTICE: Exiting app because we can\'t' +
-        ' really do anything without a token.'
-    );
-    process.end(1);
+  // Otherwise exit cleanly.
+  Botkit.log(
+    'WARNING: No SLACK_API_TOKEN present' +
+    ', can\'t connect to Slack!'
+  );
+  Botkit.log(
+    'NOTICE: Exiting app cleanly because we can\'t' +
+    ' really do anything without a token.'
+  );
+  process.end(0);
 }
 
-// Set more global variables.
 
-global._ = require('underscore');
-
+// Load all of the scripts into the bot.
+// Disable ESLint because this is necessary for the app to work.
 /* eslint-disable */
 var scripts = require('require-all')({
-    /* eslint-enable */
-    dirname: __dirname + '/modules',
-    recursive: true
+  dirname: __dirname + '/modules',
+  recursive: true
 });
+/* eslint-enable */
