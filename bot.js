@@ -8,12 +8,12 @@
 // ========================================
 //        Please enjoy responsibly.
 
-// Require core Botkit library, because we need to
-// do things with it (obviously).
+// Require core Botkit library, because we need to do things with it (obviously)
 var Botkit = require('botkit');
 
+// Set botConfig variable
 var botConfig = {};
-if (process.env.DEBUG) {
+if(process.env.DEBUG) {
   botConfig = {
     debug: true,
     logLevel: 7
@@ -34,7 +34,7 @@ global.botHelp = [];
 
 
 // If there's a SLACK_API_TOKEN,
-if (process.env.SLACK_API_TOKEN) {
+if(process.env.SLACK_API_TOKEN) {
   // Connect the bot to Slack's RTM API.
   global.piscobot.spawn({
     // Grab the token from the currently running process. 

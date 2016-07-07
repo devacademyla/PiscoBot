@@ -5,7 +5,8 @@
 
 var _ = require('underscore');
 var mathjs = require('mathjs');
-global.piscobot.hears(['(calc|calculate|calculator|convert|math|maths)( me)? (.*)'], ['direct_message', 'direct_mention', 'mention'],
+global.piscobot.hears(['(calc|calculate|calculator|convert|math|maths)( me)? (.*)'], 
+  ['direct_message', 'direct_mention', 'mention'],
   function(bot, message) {
     var result;
     try {
@@ -18,9 +19,9 @@ global.piscobot.hears(['(calc|calculate|calculator|convert|math|maths)( me)? (.*
       ];
       var calc = _.sample(msgs);
       return bot.reply(message, calc + ' `' + result + '`.');
-    } catch (error) {
+    } catch(error) {
       var err = 'Could not compute. :disappointed:';
-      if (error) {
+      if(error) {
         err += '\n Here\'s why: ' + error.message;
       }
       return bot.reply(message, err);
