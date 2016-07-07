@@ -9,12 +9,14 @@ var help = {
 
 global.botHelp.push(help);
 
-global.piscobot.hears('help', ['direct_mention'],
+global.piscobot.hears('help', ['direct_mention', 'direct_message'],
   function(bot, message) {
-    bot.reply(
-      message,
-      'Hey, <@' + bot.user + '>, I sent you a PM. :wink:'
-    );
+    if(message.event !== 'direct_message') {
+      bot.reply(
+        message,
+        'Hey, <@' + message.user + '>, I sent you a PM. :wink:'
+      );
+    }
     bot.startPrivateConversation(message,
       function(err, dm) {
         var commandIntro = {
@@ -38,7 +40,7 @@ global.piscobot.hears('help', ['direct_mention'],
         };
         dm.say(commandIntro);
         dm.ask('So, what can I help you with?', function(response, convo) {
-          convo.say('This is just a bug test thing for now.');
+          convo.say('Alright, cool! :smile:');
           convo.next();
         });
       }
