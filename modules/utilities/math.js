@@ -1,7 +1,15 @@
 // PiscoBot Script
-// Script Name:     Math
-// Author:          Daniel Gallegos [@that_taco_guy]
-// Creation Date:   03-07-2016
+
+var whoAmI = {
+  name: 'Math',
+  trigger: 'calc',
+  author: 'HowdyAI [@howdyai]',
+  version: 1.4,
+  text: 'Make PiscoBot crunch some numbers for you.',
+  module: 'Utilities'
+};
+
+global.botHelp.push(whoAmI);
 
 var _ = require('underscore');
 var mathjs = require('mathjs');
@@ -21,7 +29,7 @@ global.piscobot.hears(['(calc|calculate|calculator|convert|math|maths)( me)? (.*
       return bot.reply(message, calc + ' `' + result + '`.');
     } catch(error) {
       var err = 'Could not compute. :disappointed:';
-      if(error) {
+      if(error.message) {
         err += '\n Here\'s why: ' + error.message;
       }
       return bot.reply(message, err);
