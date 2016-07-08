@@ -5,7 +5,7 @@ var helpDescription = {
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'help',
   version: 1.0,
-  description: '',
+  description: 'General help function to learn how PiscoBot works.',
   module: 'Core'
 };
 
@@ -89,16 +89,53 @@ function commandList(response, convo) {
   convo.next();
 }
 
+function commandInfo(response, convo) {
+  var search = new RegExp(response.match[1], 'i');
+  var fields = [];
+  for(var command of global.botHelp) {
+    if(command.name.match(search) || command.trigger.match(search)) {
+      var field = {
+        'title': command.name,
+        'value': '"' + command.trigger + '" - ' + command.description,
+        'short': false
+      };
+      fields.push(field);
+    }
+  }
+  if(_.isEmpty(fields)) {
+    convo.say('I wasn\'t able to find any thing I can do that matches `' + response.match[1] +
+      '`... Sorry! :worried:');
+    convo.next();
+  } else {
+    convo.say({
+      'attachments': [{
+        'fallback': 'PiscoBot command search list',
+        'color': '#FF7300',
+        'pretext': 'Here\'s what I found for "' + response.match[1] +
+          '" in the list of stuff I can do for you...',
+        'title': 'Search results',
+        'fields': fields
+      }]
+    });
+  }
+  convo.next();
+}
+
 function helpController(response, convo) {
   convo.ask('What can I help you with?', [{
-    pattern: /info/,
+    pattern: /^info/,
     callback: function(response, convo) {
       botInfo(response, convo);
     }
   }, {
-    pattern: /command list/,
+    pattern: /^command list/,
     callback: function(response, convo) {
       commandList(response, convo);
+    }
+  }, {
+    pattern: /^command info (.*)/,
+    callback: function(response, convo) {
+      commandInfo(response, convo);
     }
   }, {
     pattern: /(nothing|nevermind|exit)/,
@@ -116,7 +153,7 @@ function helpController(response, convo) {
   }]);
 }
 
-global.piscobot.hears('help', ['direct_mention', 'direct_message'],
+global.piscobot.hears('^help', ['direct_mention', 'direct_message'],
   function(bot, message) {
     if(message.event !== 'direct_message') {
       bot.reply(
@@ -144,7 +181,7 @@ global.piscobot.hears('help', ['direct_mention', 'direct_message'],
               'value': 'Show you information on how a command works.',
               'short': false
             }, {
-              'title': '\"nothing\"',
+              'title': '\"nothing\"/\"nevermind\"/\"exit\"',
               'value': ' ¯\\_(ツ)_/¯',
               'short': false
             }]
@@ -152,6 +189,25 @@ global.piscobot.hears('help', ['direct_mention', 'direct_message'],
         };
         dm.say(commandIntro);
         helpController(message, dm);
+      }
+    );
+  }
+);
+
+global.piscobot.hears('^command list', ['direct_message'],
+  function(bot, message) {
+    bot.startPrivateConversation(message,
+      function(err, dm) {
+        commandList(message, dm);
+      }
+    );
+  }
+);
+global.piscobot.hears('^command info (.*)', ['direct_message'],
+  function(bot, message) {
+    bot.startPrivateConversation(message,
+      function(err, dm) {
+        commandInfo(message, dm);
       }
     );
   }
