@@ -42,7 +42,7 @@ function botInfo(response, convo) {
         'short': false
       }, {
         'title': 'Issue tracker',
-        'value': '<' + repo + '|Submit feature requests and bug reports here!>',
+        'value': '<' + repo + '/issues|Submit feature requests and bug reports here!>',
         'short': false
       }]
     }]
