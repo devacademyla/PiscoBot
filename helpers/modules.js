@@ -1,12 +1,5 @@
-function checkPermissions(bot, message) {
-
-}
-
-function disabledMessage(bot, message) {
-    
-}
+var moduleList = ['Core', 'Fun', 'Utilities', 'Misc'];
 
 module.exports = {
-    checkPermissions: checkPermissions,
-    disabledMessage: disabledMessage
-}
+  list: moduleList
+};
