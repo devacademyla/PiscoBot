@@ -1,11 +1,17 @@
 // PiscoBot Script
-// Script Name:     Hello
-// Author:          Daniel Gallegos [@that_taco_guy]
-// Creation Date:   29-06-2016
 
-/* eslint-disable */
-global.piscobot.hears('hello', ['direct_message', 'direct_mention', 'mention'],
-  /* eslint-enable */
+var helloDescription = {
+  name: 'Hello',
+  author: 'HowdyAI [@HowdyAI]',
+  trigger: 'hello',
+  version: 1.3,
+  description: 'Say hello to PiscoBot!',
+  module: 'Core'
+};
+
+global.botHelp.push(helloDescription);
+
+global.piscobot.hears('hello', ['direct_message', 'direct_mention'],
   function(bot, message) {
     global.piscobot.storage.users.get(message.user, function(err, user) {
       if (user && user.name) {

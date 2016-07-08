@@ -1,14 +1,15 @@
 // PiscoBot Script
-var whoAmI = {
+
+var whoAmIDescription = {
   name: 'Who Am I',
-  commandTrigger: 'who am i',
+  trigger: 'who am i',
   author: 'HowdyAI [@howdyai]',
   version: 1.4,
   text: 'Ask the bot what your name is.',
   module: 'Core'
 };
 
-global.botHelp.push(whoAmI);
+global.botHelp.push(whoAmIDescription);
 
 function learnName(bot, message) {
   var msg = '';
@@ -37,7 +38,7 @@ function learnName(bot, message) {
       }, { key: 'nickname' });
       convo.on('end', function(convo) {
         if(convo.status === 'completed') {
-          msg = 'OK! Lemme write that down somewhere...';
+          msg = 'Okay! Lemme write that down somewhere...';
           bot.reply(message, msg);
           global.piscobot.storage.users.get(message.user, function(err, user) {
             if(!user) {
@@ -53,7 +54,7 @@ function learnName(bot, message) {
             });
           });
         } else {
-          bot.reply(message, 'OK, nevermind! :sweat_smile:');
+          bot.reply(message, 'Okay, nevermind! :sweat_smile:');
         }
       });
     }
