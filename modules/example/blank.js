@@ -1,4 +1,3 @@
-/* eslint-disable */
 /*
 // PiscoBot Script
 
@@ -19,4 +18,3 @@ global.piscobot.hears('', [''],
   }
 ); 
 */
-/* eslint-enable */
