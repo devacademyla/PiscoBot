@@ -15,7 +15,7 @@ var request = require('request');
 global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],
   function(bot, message) {
     var spotifyAPI = 'https://api.spotify.com/v1/search?q=' + message.match[1] + '&type=track';
-    var error = 'Huh... I couldn\'t find `' + message.match[1] + '` on Spotify. :';
+    var error = 'Huh... I couldn\'t find `' + message.match[1] + '` on Spotify.';
     request.get(spotifyAPI, function(err, res, body) {
       if(!err && res.statusCode === 200) {
         var response = JSON.parse(body);
