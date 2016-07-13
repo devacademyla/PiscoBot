@@ -24,14 +24,15 @@ global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],
         if(tracks > 0 && result !== null) {
           var artistList = '';
           for(var artist of result.artists) {
-          	artistList += artist.name + ', '
+            artistList += artist.name + ', ';
           }
           artistList = artistList.slice(0, -2);
           var songObject = {
             'attachments': [{
               'fallback': result.name,
               'color': '#1DD069',
-              'pretext': 'Here\'s what I found for "' + message.match[1] + '" on Spotify:',
+              'pretext': 'Here\'s what I found for "' + message.match[1] +
+                '" on Spotify:',
               'author_name': artistList,
               'author_link': result.album.external_urls.spotify,
               'title': result.name,
@@ -44,9 +45,9 @@ global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],
               }],
               'thumb_url': result.album.images[0].url,
               'footer': 'Spotify',
-              'footer_icon': 'http://i.imgur.com/FzytcEk.png',
+              'footer_icon': 'http://i.imgur.com/FzytcEk.png'
             }]
-          }
+          };
           bot.reply(message, songObject);
         } else {
           bot.reply(message, error);
