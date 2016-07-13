@@ -20,13 +20,34 @@ global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],
       if(!err && res.statusCode === 200) {
         var response = JSON.parse(body);
         var tracks = response.tracks.items.length;
-        // jscs:disable
-        // Disabled because `external_urls` is an external
-        // variables and is not part of the application.
-        var urls = response.tracks.items[0].external_urls;
-        // jscs:enable
-        if(tracks > 0 && urls !== null) {
-          bot.reply(message, urls.spotify);
+        var result = response.tracks.items[0];
+        if(tracks > 0 && result !== null) {
+          var artistList = '';
+          for(var artist of result.artists) {
+          	artistList += artist.name + ', '
+          }
+          artistList = artistList.slice(0, -2);
+          var songObject = {
+            'attachments': [{
+              'fallback': result.name,
+              'color': '#1DD069',
+              'pretext': 'Here\'s what I found for "' + message.match[1] + '" on Spotify:',
+              'author_name': artistList,
+              'author_link': result.album.external_urls.spotify,
+              'title': result.name,
+              'title_link': result.external_urls.spotify,
+              'text': result,
+              'fields': [{
+                'title': 'Listen to this on Spotify',
+                'value': '<' + result.external_urls.spotify + '|Click Here>',
+                'short': true
+              }],
+              'thumb_url': result.album.images[0].url,
+              'footer': 'Spotify',
+              'footer_icon': 'http://i.imgur.com/FzytcEk.png',
+            }]
+          }
+          bot.reply(message, songObject);
         } else {
           bot.reply(message, error);
         }
