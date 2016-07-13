@@ -4,7 +4,7 @@
 // ==========================================================================
 // PiscoBot Script
 
-var example = {
+var commandDescription = {
   name: 'Example Script',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'example',
@@ -14,7 +14,7 @@ var example = {
 };
 
 // {Uncomment the following line to add the your list to the command list.}
-global.botHelp.push(example);
+global.botHelp.push(commandDescription);
 
 // {We're using the native .hears() function from BotKit in most of our scripts. It's written really
 // well, so why reinvent the wheel?}

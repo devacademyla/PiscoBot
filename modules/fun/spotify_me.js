@@ -1,6 +1,6 @@
 // PiscoBot Script
 
-var spotifyDescription = {
+var commandDescription = {
   name: 'Spotify',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'spotify me [search term]',
@@ -9,7 +9,7 @@ var spotifyDescription = {
   module: 'Fun'
 };
 
-global.botHelp.push(spotifyDescription);
+global.botHelp.push(commandDescription);
 
 var request = require('request');
 global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],

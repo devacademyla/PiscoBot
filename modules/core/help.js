@@ -1,6 +1,6 @@
 // PiscoBot Script
 
-var helpDescription = {
+var commandDescription = {
   name: 'Help',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'help',
@@ -9,7 +9,7 @@ var helpDescription = {
   module: 'Core'
 };
 
-global.botHelp.push(helpDescription);
+global.botHelp.push(commandDescription);
 
 var helpers = require('./../../helpers');
 var _ = require('underscore');

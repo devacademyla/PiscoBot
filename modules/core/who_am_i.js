@@ -1,6 +1,6 @@
 // PiscoBot Script
 
-var whoAmIDescription = {
+var commandDescription = {
   name: 'Who Am I',
   trigger: 'who am i',
   author: 'HowdyAI [@howdyai]',
@@ -9,7 +9,7 @@ var whoAmIDescription = {
   module: 'Core'
 };
 
-global.botHelp.push(whoAmIDescription);
+global.botHelp.push(commandDescription);
 
 function learnName(bot, message) {
   var msg = '';

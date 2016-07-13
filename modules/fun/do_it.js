@@ -1,6 +1,6 @@
 // PiscoBot Script
 
-var doItDescription = {
+var commandDescription = {
   name: 'Do It',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'do it',
@@ -9,7 +9,7 @@ var doItDescription = {
   module: 'Fun'
 };
 
-global.botHelp.push(doItDescription);
+global.botHelp.push(commandDescription);
 
 var _ = require('underscore');
 global.piscobot.hears(['do(it| it)'], ['ambient', 'direct_mention', 'direct_message', 'mention'],

@@ -1,6 +1,6 @@
 // PiscoBot Script
 
-var helloDescription = {
+var commandDescription = {
   name: 'Hello',
   author: 'HowdyAI [@HowdyAI]',
   trigger: 'hello',
@@ -9,7 +9,7 @@ var helloDescription = {
   module: 'Core'
 };
 
-global.botHelp.push(helloDescription);
+global.botHelp.push(commandDescription);
 
 global.piscobot.hears('hello', ['direct_message', 'direct_mention'],
   function(bot, message) {
