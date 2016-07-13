@@ -1,6 +1,6 @@
 // PiscoBot Script
 
-var commandDescription = {
+var spotifyDescription = {
   name: 'Spotify',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'spotify me [search term]',
@@ -9,14 +9,14 @@ var commandDescription = {
   module: 'Fun'
 };
 
-global.botHelp.push(commandDescription);
+global.botHelp.push(spotifyDescription);
 
+var request = require('request');
 global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],
   function(bot, message) {
-    var msg = '';
     var spotifyAPI = 'https://api.spotify.com/v1/search?q=' + message.match[1] + '&type=track';
-    var err = 'Huh... I couldn\'t find `' + message.match[1] + '` on Spotify. :';
-    request.get(url, function(err, res, body) {
+    var error = 'Huh... I couldn\'t find `' + message.match[1] + '` on Spotify. :';
+    request.get(spotifyAPI, function(err, res, body) {
       if(!err && res.statusCode === 200) {
         var response = JSON.parse(body);
         var tracks = response.tracks.items.length;
@@ -28,12 +28,10 @@ global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],
         if(tracks > 0 && urls !== null) {
           bot.reply(message, urls.spotify);
         } else {
-          msg = ;
-          bot.reply(message, msg);
+          bot.reply(message, error);
         }
       } else {
-        msg = 'Huh... I couldn\'t find `' + message.match[1] + '` on Spotify.';
-        bot.reply(message, msg);
+        bot.reply(message, error);
       }
     });
   }
