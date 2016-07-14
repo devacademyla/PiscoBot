@@ -3,11 +3,13 @@
 var commandDescription = {
   name: 'GitHub Mention',
   author: 'Daniel Gallegos [@that_taco_guy]',
-  trigger: '[none]',
+  trigger: '',
   version: 1.0,
   description: 'Have the bot reply to new commits on GitHub.',
   module: 'Core'
 };
+
+global.botHelp.push(commandDescription);
 
 var _ = require('underscore');
 

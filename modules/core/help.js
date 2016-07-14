@@ -61,7 +61,7 @@ function commandList(response, convo) {
     var moduleCommands = _.where(helpList, { module: moduleName });
     var triggers = '';
     for(var command of moduleCommands) {
-      if(command.trigger) {
+      if(!_.isEmpty(command.trigger)) {
         triggers += '"' + command.trigger + '", ';
       }
     }
