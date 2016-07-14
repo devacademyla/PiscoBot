@@ -12,6 +12,7 @@ var commandDescription = {
 global.botHelp.push(commandDescription);
 
 var _ = require('underscore');
+
 global.piscobot.hears(['8ball (.*)'], ['direct_message', 'direct_mention'],
   function(bot, message) {
     var responses = [
