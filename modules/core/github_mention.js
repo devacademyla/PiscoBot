@@ -9,8 +9,6 @@ var commandDescription = {
   module: 'Core'
 };
 
-global.botHelp.push(commandDescription);
-
 var _ = require('underscore');
 
 global.piscobot.hears(['PiscoBot.*new commits by', 'PiscoBot.*new commit by'], ['bot_message'],
