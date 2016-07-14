@@ -1,3 +1,5 @@
+// PiscoBot Script
+
 var commandDescription = {
   name: 'Ship It',
   author: 'Daniel Gallegos [@that_taco_guy]',

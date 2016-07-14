@@ -1,3 +1,5 @@
+// PiscoBot Script
+
 var commandDescription = {
   name: '8ball',
   author: 'Daniel Gallegos [@that_taco_guy]',
