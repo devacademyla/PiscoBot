@@ -12,6 +12,7 @@ var commandDescription = {
 global.botHelp.push(commandDescription);
 
 var _ = require('underscore');
+
 global.piscobot.hears(['do(it| it)'], ['ambient', 'direct_mention', 'direct_message', 'mention'],
   function(bot, message) {
     var doIt = [
