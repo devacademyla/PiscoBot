@@ -1,7 +1,7 @@
 // PiscoBot Script
 
 var commandDescription = {
-  name: 'Spotify',
+  name: 'Spotify Me',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'spotify me [search term]',
   version: 1.0,
