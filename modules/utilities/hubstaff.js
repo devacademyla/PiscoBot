@@ -20,15 +20,17 @@ function dailyReport(bot, message, users, organization) {
   });
   var fields = [];
   for(var i = 0; i < 3; i++) {
-    var userHours = (users[i].daily.duration / 3600);
-    var dailyHours = (organization.daily / 3600);
-    var userPercentage = ((userHours / dailyHours) * 100);
-    fields.push({
-      'title': (i + 1) + '. ' + users[i].name,
-      'value': 'Worked ' + userHours.toFixed(2) + ' hour(s) today. Percentage: ' +
-        userPercentage.toFixed(2) + '%',
-      'short': false
-    });
+    if(users[i] && users[i].daily && organization.daily) {
+      var userHours = (users[i].daily.duration / 3600);
+      var dailyHours = (organization.daily / 3600);
+      var userPercentage = ((userHours / dailyHours) * 100);
+      fields.push({
+        'title': (i + 1) + '. ' + users[i].name,
+        'value': 'Worked ' + userHours.toFixed(2) + ' hour(s) today. Percentage: ' +
+          userPercentage.toFixed(2) + '%',
+        'short': false
+      });
+    }
   }
   fields.push({
     'title': 'Team Total:',
