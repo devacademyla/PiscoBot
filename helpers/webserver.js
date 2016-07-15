@@ -22,7 +22,7 @@ function server() {
       'It\'s hard to overstate my satisfacti<span class="red">o</span>n.',
       'Aperture Science.',
       'We d<span class="red">o</span> what we must because we can.',
-      'For the g<span class="red">o</span>od of all of us\nExcept the ones who are dead.',
+      'For the g<span class="red">o</span>od of all of us<br>Except the ones who are dead.',
       'But there\'s n<span class="red">o</span> sense crying over every mistake.',
       'You just keep <span class="red">o</span>n trying till you run out of cake.',
       'And the science gets d<span class="red">o</span>ne and you make a neat gun.',
