@@ -58,15 +58,17 @@ function weeklyReport(bot, message, users, organization) {
   });
   var fields = [];
   for(var i = 0; i < 3; i++) {
-    var userHours = (users[i].weekly / 3600);
-    var weeklyHours = (organization.weekly / 3600);
-    var userPercentage = ((userHours / weeklyHours) * 100);
-    fields.push({
-      'title': (i + 1) + '. ' + users[i].name,
-      'value': 'Worked ' + userHours.toFixed(2) + ' hour(s) this week. Percentage: ' +
-        userPercentage.toFixed(2) + '%',
-      'short': false
-    });
+    if(users[i] && users[i].weekly && organization.weekly) {
+      var userHours = (users[i].weekly / 3600);
+      var weeklyHours = (organization.weekly / 3600);
+      var userPercentage = ((userHours / weeklyHours) * 100);
+      fields.push({
+        'title': (i + 1) + '. ' + users[i].name,
+        'value': 'Worked ' + userHours.toFixed(2) + ' hour(s) this week. Percentage: ' +
+          userPercentage.toFixed(2) + '%',
+        'short': false
+      });
+    }
   }
   fields.push({
     'title': 'Team Total:',
