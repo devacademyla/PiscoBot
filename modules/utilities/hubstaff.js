@@ -26,8 +26,7 @@ function dailyReport(bot, message, users, organization) {
     fields.push({
       'title': (i + 1) + '. ' + users[i].name,
       'value': 'Worked ' + userHours.toFixed(2) + ' hour(s) today. Percentage: ' +
-        userPercentage.toFixed(
-          2),
+        userPercentage.toFixed(2) + '%',
       'short': false
     });
   }
@@ -63,8 +62,7 @@ function weeklyReport(bot, message, users, organization) {
     fields.push({
       'title': (i + 1) + '. ' + users[i].name,
       'value': 'Worked ' + userHours.toFixed(2) + ' hour(s) this week. Percentage: ' +
-        userPercentage.toFixed(
-          2),
+        userPercentage.toFixed(2) + '%',
       'short': false
     });
   }
@@ -140,7 +138,7 @@ function getData(bot, message, weekly) {
         if(weekly) {
           weeklyReport(bot, message, userList, org);
         } else {
-          dailyReport(bot, message, userList, organization);
+          dailyReport(bot, message, userList, org);
         }
       } else {
         bot.reply(message,
@@ -153,8 +151,9 @@ function getData(bot, message, weekly) {
   });
 }
 
-global.piscobot.hears(['(weekly) hubstaff report', 'hubstaff report'], 
-  ['direct_mention', 'direct_message'],
+global.piscobot.hears(['(weekly) hubstaff report', 'hubstaff report'], ['direct_mention',
+    'direct_message'
+  ],
   function(bot, message) {
     if(message.match[1] && message.match[1] === 'weekly') {
       getData(bot, message, true);
