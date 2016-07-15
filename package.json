@@ -29,6 +29,7 @@
     "eslint": "^2.13.1",
     "mathjs": "^3.2.1",
     "mongodb": "^2.1.18",
+    "request": "^2.73.0",
     "require-all": "^2.0.0",
     "underscore": "^1.8.3"
   }

@@ -1,6 +1,6 @@
 // PiscoBot Script
 
-var mathDescription = {
+var commandDescription = {
   name: 'Math',
   trigger: 'calc',
   author: 'HowdyAI [@howdyai]',
@@ -9,7 +9,7 @@ var mathDescription = {
   module: 'Utilities'
 };
 
-global.botHelp.push(mathDescription);
+global.botHelp.push(commandDescription);
 
 var _ = require('underscore');
 var mathjs = require('mathjs');
