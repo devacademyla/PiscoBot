@@ -1,9 +1,7 @@
-'use strict';
+var modules = require('./modules');
+var core = require('./core');
 
-function randomFromArray(array) {
-  var random = array[Math.floor(Math.random() * array.length)];
-  return random;
-}
 module.exports = {
-  randomFromArray: randomFromArray,
+  modules: modules,
+  core: core
 };

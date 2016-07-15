@@ -8,67 +8,57 @@
 // ========================================
 //        Please enjoy responsibly.
 
-// Load PiscoBot library
-var lib = require('./lib');
-var async = require('async');
+// Require core Botkit library, because we need to do things with it (obviously)
+var Botkit = require('botkit');
 
-// Declare variables
-var controller = lib.core.controller;
-var scriptIndex = lib.scripts.index();
-var scriptContext = lib.scripts.context;
-var scriptMatches;
-var keepAlive = lib.keepalive;
+// Set botConfig variable
+var botConfig = {};
+if(process.env.DEBUG) {
+  botConfig = {
+    debug: true,
+    logLevel: 7
+  };
+} else {
+  botConfig = {
+    debug: false
+  };
+}
 
-// Seperate listening into different functions
-controller.hears(scriptIndex, ['direct_message'], function(bot, message) {
-  scriptMatches = scriptContext(message.match[0], 'direct_message');
-  if (scriptMatches && scriptMatches[0] === true) {
-    var command = scriptMatches[1];
-    command(bot, controller, message);
-  }
-});
-controller.hears(scriptIndex, ['direct_mention'], function(bot, message) {
-  scriptMatches = scriptContext(message.match[0], 'direct_mention');
-  if (scriptMatches && scriptMatches[0] === true) {
-    var command = scriptMatches[1];
-    command(bot, controller, message);
-  }
-});
-controller.hears(scriptIndex, ['bot_message'], function(bot, message) {
-  scriptMatches = scriptContext(message.match[0], 'bot_message');
-  if (scriptMatches && scriptMatches[0] === true) {
-    var command = scriptMatches[1];
-    command(bot, controller, message);
-  }
-});
-controller.hears(scriptIndex, ['mention'], function(bot, message) {
-  scriptMatches = scriptContext(message.match[0], 'mention');
-  if (scriptMatches && scriptMatches[0] === true) {
-    var command = scriptMatches[1];
-    command(bot, controller, message);
-  }
-});
-controller.hears(scriptIndex, ['ambient'], function(bot, message) {
-  scriptMatches = scriptContext(message.match[0], 'ambient');
-  if (scriptMatches && scriptMatches[0] === true) {
-    var command = scriptMatches[1];
-    command(bot, controller, message);
-  }
-});
-controller.on('bot_message', function(bot, message) {
-  async.each(scriptIndex, function(matcher, callback) {
-    var regex = new RegExp(matcher, 'i');
-    var match = message.text.match(regex);
-    if (match) {
-      scriptMatches = scriptContext(match[0], 'bot_message');
-      if (scriptMatches && scriptMatches[0] === true) {
-        var command = scriptMatches[1];
-        command(bot, controller, message);
-      }
-    }
-    callback();
-  });
-});
+// Set the bot controller as a global variable which can be accessed in 
+// any file without having to pass it through anything.
+global.piscobot = Botkit.slackbot(botConfig);
 
-// Start bot keepAlive server
-keepAlive.start(controller);
+// Set a global `botHelp` array that can be modified by any script
+// to be able to include itself in the `help` command. 
+global.botHelp = [];
+
+
+// If there's a SLACK_API_TOKEN,
+if(process.env.SLACK_API_TOKEN) {
+  // Connect the bot to Slack's RTM API.
+  global.piscobot.spawn({
+    // Grab the token from the currently running process. 
+    token: process.env.SLACK_API_TOKEN
+  }).startRTM();
+} else {
+  // Otherwise exit cleanly.
+  Botkit.log(
+    'WARNING: No SLACK_API_TOKEN present' +
+    ', can\'t connect to Slack!'
+  );
+  Botkit.log(
+    'NOTICE: Exiting app cleanly because we can\'t' +
+    ' really do anything without a token.'
+  );
+  process.end(0);
+}
+
+
+// Load all of the scripts into the bot.
+// Disable ESLint because this is necessary for the app to work.
+/* eslint-disable */
+var scripts = require('require-all')({
+  dirname: __dirname + '/modules',
+  recursive: true
+});
+/* eslint-enable */
