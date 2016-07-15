@@ -62,3 +62,8 @@ var scripts = require('require-all')({
   recursive: true
 });
 /* eslint-enable */
+
+// Start up our webserver.
+
+var helpers = require('./helpers');
+helpers.webserver.start();
