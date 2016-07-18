@@ -13,7 +13,7 @@ function uptime() {
   if(processTime != 1) {
     unit = unit + 's';
   }
-  processTime = processTime + ' ' + unit;
+  processTime = processTime.toFixed(2) + ' ' + unit;
   return processTime;
 }
 
