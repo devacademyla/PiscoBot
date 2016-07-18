@@ -21,7 +21,7 @@ function botInfo(response, convo) {
     'attachments': [{
       'fallback': 'Required plain-text summary of the attachment.',
       'color': '#FF7300',
-      'pretext': 'Alright! Here\'s what I can tell you about me:',
+      'pretext': 'Here\'s what I can tell you about me:',
       'author_name': 'devAcademy',
       'author_link': 'https://devacademy.la',
       'author_icon': 'https://devacademy.la/favicon.png',
@@ -44,7 +44,9 @@ function botInfo(response, convo) {
         'title': 'Issue tracker',
         'value': '<' + repo + '/issues|Submit feature requests and bug reports here!>',
         'short': false
-      }]
+      }],
+      'footer': 'PiscoBot',
+      'footer_icon': 'https://raw.githubusercontent.com/twitter/twemoji/gh-pages/72x72/1f379.png'
     }]
   };
   convo.say(info);
@@ -81,7 +83,9 @@ function commandList(response, convo) {
       'color': '#FF7300',
       'pretext': 'Here\'s a list of things I can do for you!',
       'title': 'Command list',
-      'fields': fields
+      'fields': fields,
+      'footer': 'PiscoBot',
+      'footer_icon': 'https://raw.githubusercontent.com/twitter/twemoji/gh-pages/72x72/1f379.png'
     }]
   };
   convo.say(commands);
@@ -114,7 +118,9 @@ function commandInfo(response, convo) {
         'pretext': 'Here\'s what I found for "' + response.match[1] +
           '" in the list of stuff I can do for you...',
         'title': 'Search results',
-        'fields': fields
+        'fields': fields,
+        'footer': 'PiscoBot',
+        'footer_icon': 'https://raw.githubusercontent.com/twitter/twemoji/gh-pages/72x72/1f379.png'
       }]
     });
   }
@@ -184,7 +190,10 @@ global.piscobot.hears('^help', ['direct_mention', 'direct_message'],
               'title': '\"nothing\"/\"nevermind\"/\"exit\"',
               'value': ' ¯\\_(ツ)_/¯',
               'short': false
-            }]
+            }],
+            'footer': 'PiscoBot',
+            'footer_icon': 'https://raw.githubusercontent.com/' +
+              'twitter/twemoji/gh-pages/72x72/1f379.png'
           }]
         };
         dm.say(commandIntro);
@@ -203,11 +212,22 @@ global.piscobot.hears('^command list', ['direct_message'],
     );
   }
 );
+
 global.piscobot.hears('^command info (.*)', ['direct_message'],
   function(bot, message) {
     bot.startPrivateConversation(message,
       function(err, dm) {
         commandInfo(message, dm);
+      }
+    );
+  }
+);
+
+global.piscobot.hears('^info', ['direct_message'],
+  function(bot, message) {
+    bot.startPrivateConversation(message,
+      function(err, dm) {
+        botInfo(message, dm);
       }
     );
   }
