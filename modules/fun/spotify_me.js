@@ -39,7 +39,11 @@ global.piscobot.hears('spotify me (.*)', ['direct_message', 'direct_mention'],
               'title_link': result.external_urls.spotify,
               'text': result,
               'fields': [{
-                'title': 'Listen to this on Spotify',
+                'title': 'Open this in Spotify',
+                'value': '<' + result.uri + '|Click Here>',
+                'short': true
+              }, {
+                'title': 'See this song on the web',
                 'value': '<' + result.external_urls.spotify + '|Click Here>',
                 'short': true
               }],
