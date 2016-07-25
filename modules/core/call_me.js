@@ -17,9 +17,9 @@ global.piscobot.hears(['call me (.*)', 'my name is (.*)'], ['direct_message', 'd
     var msg = '';
     global.piscobot.storage.users.get(message.user, function(err, user) {
       if(!user) { user = { id: message.user }; }
-      user.name = name;
+      user.nickname = name;
       global.piscobot.storage.users.save(user, function() {
-        msg = 'Got it! I\'ll call you ' + user.name + ' from now on.';
+        msg = 'Got it! I\'ll call you ' + user.nickname + ' from now on.';
         bot.reply(message, msg);
       });
     });
