@@ -1,12 +1,12 @@
 // PiscoBot Script
 
 var commandDescription = {
-  name: '',
-  author: '',
-  trigger: '',
+  name: 'Points',
+  author: 'Daniel Gallegos [@that_taco_guy]',
+  trigger: ':pisco:/:poop:',
   version: 1.0,
-  description: '',
-  module: ''
+  description: 'Give or take away points from other users.',
+  module: 'Core'
 };
 
 global.botHelp.push(commandDescription);
