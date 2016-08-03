@@ -18,7 +18,7 @@ global.piscobot.hears(['lilmoises', 'lilmoises69'],
   }
 );
 
-global.piscobot.hears(['pisco', 'hangover', 'drunk', 'alcohol'], 
+global.piscobot.hears(['hangover', 'drunk', 'alcohol'], 
   ['ambient', 'direct_message', 'direct_mention', 'mention'],
   function(bot, message) {
     bot.api.reactions.add({
