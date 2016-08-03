@@ -96,7 +96,7 @@ global.piscobot.hears(
         var users = [];
         var promises = [];
         team.members.forEach(function(member) {
-          if(member.is_bot === false && member.deleted === false) {
+          if(member.is_bot === false && member.deleted === false && member.id !== 'USLACKBOT') {
             var promise = new Promise(function(resolve, reject) {
               global.piscobot.storage.users.get(member.id, function(err, user) {
                 if(err) {
@@ -130,7 +130,7 @@ global.piscobot.hears(
             fields.push({
               'title': user.username,
               'value': user.points,
-              'short': false
+              'short': true
             });
           }
           var response = {
