@@ -16,7 +16,7 @@ if(process.env.MONGODB_URI) {
 }
 // Set botConfig variable
 var botConfig = {};
-if(process.env.DEBUG) {
+if(process.env.DEVELOPMENT) {
   botConfig = {
     debug: true,
     logLevel: 7,
