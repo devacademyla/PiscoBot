@@ -25,6 +25,7 @@
   "homepage": "https://github.com/devacademyla/PiscoBot#readme",
   "dependencies": {
     "botkit": "^0.2.2",
+    "botkit-storage-mongo": "^1.0.4",
     "botkit-storage-redis": "^1.0.1",
     "eslint": "^2.13.1",
     "mathjs": "^3.2.1",

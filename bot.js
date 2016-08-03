@@ -11,16 +11,21 @@
 // Require core Botkit library, because we need to do things with it (obviously)
 var Botkit = require('botkit');
 
+if(process.env.MONGODB_URI) {
+  var mongoStorage = require('botkit-storage-mongo')({ mongoUri: process.env.MONGODB_URI });
+}
 // Set botConfig variable
 var botConfig = {};
 if(process.env.DEBUG) {
   botConfig = {
     debug: true,
-    logLevel: 7
+    logLevel: 7,
+    storage: mongoStorage
   };
 } else {
   botConfig = {
-    debug: false
+    debug: false,
+    storage: mongoStorage
   };
 }
 
@@ -43,12 +48,10 @@ if(process.env.SLACK_API_TOKEN) {
 } else {
   // Otherwise exit cleanly.
   Botkit.log(
-    'WARNING: No SLACK_API_TOKEN present' +
-    ', can\'t connect to Slack!'
+    'WARNING: No SLACK_API_TOKEN present, can\'t connect to Slack!'
   );
   Botkit.log(
-    'NOTICE: Exiting app cleanly because we can\'t' +
-    ' really do anything without a token.'
+    'NOTICE: Exiting app because we can\'t do anything without a token.'
   );
   process.end(0);
 }

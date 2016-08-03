@@ -24,7 +24,7 @@ global.piscobot.hears('hello', ['direct_message', 'direct_mention'],
             bot.botkit.log('Failed to add emoji reaction :(', err);
           }
         });
-        bot.reply(message, 'Hey, there, ' + user.name + '! :smile:');
+        bot.reply(message, 'Hey, there, ' + user.nickname + '! :smile:');
       } else {
         bot.api.reactions.add({
           timestamp: message.ts,
