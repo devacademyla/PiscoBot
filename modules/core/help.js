@@ -161,12 +161,7 @@ function helpController(response, convo) {
 
 global.piscobot.hears('^help', ['direct_mention', 'direct_message'],
   function(bot, message) {
-    if(message.event !== 'direct_message') {
-      bot.reply(
-        message,
-        'Hey, <@' + message.user + '>, I sent you a PM. :wink:'
-      );
-    }
+    helpers.chat.pmCheck(bot, message);
     bot.startPrivateConversation(message,
       function(err, dm) {
         var commandIntro = {
