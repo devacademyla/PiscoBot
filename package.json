@@ -26,8 +26,7 @@
   "dependencies": {
     "botkit": "^0.2.2",
     "botkit-storage-mongo": "^1.0.4",
-    "botkit-storage-redis": "^1.0.1",
-    "eslint": "^2.13.1",
+    "eslint": "^3.2.2",
     "mathjs": "^3.2.1",
     "mongodb": "^2.1.18",
     "request": "^2.73.0",
