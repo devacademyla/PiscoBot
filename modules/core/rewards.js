@@ -82,6 +82,7 @@ global.piscobot.hears(['^reward list'], ['direct_message', 'direct_mention'],
           convo.say(
             'Err... ran into an error when trying to get the list of rewards.' +
             ' Mind trying again later? :sweat_smile:');
+          convo.next();
         });
       }
     });
