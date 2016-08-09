@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
   };
   var responses = [
     'Pretty cool, amirite?',
-    '"Hey, that\'s pretty good."<br>- you, probably',
+    '"Hey, that\'s pretty good."',
     'It\'s something.',
     '¯\\_(ツ)_/¯',
     'We did it, Reddit!',
@@ -27,11 +27,11 @@ app.get('/', function(req, res) {
     '[insert witty text here]',
     ':v',
     'This was a triumph.',
-    'I\'m making a note here:<br> HUGE SUCCESS.',
+    'I\'m making a note here: HUGE SUCCESS.',
     'It\'s hard to overstate my satisfaction.',
     'Aperture Science.',
     'We do what we must because we can.',
-    'For the good of all of us...<br>Except the ones who are dead.',
+    'For the good of all of us. Except the ones who are dead.',
     'But there\'s no sense crying over every mistake.',
     'You just keep on trying till you run out of cake.',
     'And the science gets done and you make a neat gun.',
