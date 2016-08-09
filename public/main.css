@@ -1,0 +1,12 @@
+body {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
+.title {
+    font-weight: 600;
+}
+
+.caption {
+    font-weight: 200;
+}
