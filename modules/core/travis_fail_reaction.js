@@ -16,7 +16,7 @@ var _ = require('underscore');
 global.piscobot.on('bot_message', function(bot, message) {
   if(!_.isEmpty(message.attachments)) {
     var botMessage = message.attachments[0];
-    var regex = new RegExp(/Build.*of.*by .* (failed|errored) in/, 'g');
+    var regex = /Build.*of.*by .* (failed|errored) in/g;
     if(!_.isEmpty(botMessage.text) && regex.test(botMessage.text)) {
       bot.api.reactions.add({
         timestamp: message.ts,
