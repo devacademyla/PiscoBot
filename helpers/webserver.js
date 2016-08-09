@@ -9,7 +9,7 @@ app.get('/', function(req, res) {
     title: 'PiscoBot',
     url: 'http://devacademy-piscobot.herokuapp.com',
     image: 'https://cdn.rawgit.com/twitter/twemoji/gh-pages/72x72/1f379.png',
-    favicon: 'https://cdn.rawgit.com/twitter/twemoji/gh-pages/32x32/1f379.png',
+    favicon: 'https://cdn.rawgit.com/twitter/twemoji/gh-pages/36x36/1f379.png',
     icon: 'https://cdn.rawgit.com/twitter/twemoji/gh-pages/72x72/1f379.png',
     description: 'A Slackbot by devAcademy. Enjoy responsibly.',
     svg: 'https://cdn.rawgit.com/twitter/twemoji/gh-pages/svg/1f379.svg'
