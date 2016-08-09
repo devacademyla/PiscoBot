@@ -10,3 +10,8 @@ body {
 .caption {
     font-weight: 200;
 }
+
+.spaced {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
