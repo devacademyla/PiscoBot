@@ -1,0 +1,29 @@
+html
+  head
+    title= og.title
+    each val, key in og
+        meta(property = 'og:' + key, content = val)
+    link(href='https://fonts.googleapis.com/css?family=Lato:300,400&subset=latin-ext' rel='stylesheet')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css')
+    link(href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    link(href='main.css' rel='stylesheet')
+    link(rel='icon' type='image/png' href=og.favicon)
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  body
+    .container
+        .row
+            .col.s6.offset-s3.m4.offset-m4
+                object(type="image/svg+xml" data= og.svg )
+        .row
+            h1.title= og.title
+            h5.caption!= caption
+        .row
+            .col.m3.s12.spaced
+                a.waves-effect.waves-light.btn.orange(href='https://github.com/devacademyla/PiscoBot/blob/master/README.md')= 'About'
+            .col.m3.s12.spaced
+                a.waves-effect.waves-light.btn.orange(href='https://github.com/devacademyla/PiscoBot/wiki/')= 'Documentation'
+            .col.m3.s12.spaced
+                a.waves-effect.waves-light.btn.orange(href='https://github.com/devacademyla/PiscoBot')= 'Source Code'
+            .col.m3.s12.spaced
+                a.waves-effect.waves-light.btn.orange(href='https://devacademy.la')= 'Creators'
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js')

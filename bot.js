@@ -16,7 +16,7 @@ if(process.env.MONGODB_URI) {
 }
 // Set botConfig variable
 var botConfig = {};
-if(process.env.DEBUG) {
+if(process.env.DEVELOPMENT) {
   botConfig = {
     debug: true,
     logLevel: 7,
@@ -56,17 +56,13 @@ if(process.env.SLACK_API_TOKEN) {
   process.end(0);
 }
 
-
-// Load all of the scripts into the bot.
-// Disable ESLint because this is necessary for the app to work.
 /* eslint-disable */
+// Disable ESLint because this is necessary for the app to work.
+// Load all of the scripts into the bot.
 var scripts = require('require-all')({
   dirname: __dirname + '/modules',
   recursive: true
 });
-/* eslint-enable */
-
 // Start up our webserver.
-
 var helpers = require('./helpers');
-helpers.webserver.start();
+/* eslint-enable */

@@ -31,7 +31,7 @@ function notifyGiver(bot, message, value, user) {
   bot.startPrivateConversation(message, function(err, convo) {
     var info = 'You just gave ';
     if(value > 0) {
-      info += 'a shot of Pisco to <@' + user.id + '>. :tropical_drink: :smile';
+      info += 'a shot of Pisco to <@' + user.id + '>. :tropical_drink: :smile:';
     } else if(value < 0) {
       info += 'some :shit: to <@' + user.id + '>. :joy:';
     }
@@ -46,7 +46,10 @@ function modifyPoints(bot, message, value) {
   var userIDs = [];
   for(var rawUser of usersMatched) {
     var trimmedID = rawUser.replace(/(<|@|>)/g, '');
-    if(trimmedID !== message.user) {
+    if(trimmedID === message.user) {
+      bot.reply(message, 'You can\'t give yourself points. :unamused:');
+      return;
+    } else {
       userIDs.push(trimmedID);
     }
   }
@@ -68,6 +71,7 @@ function modifyPoints(bot, message, value) {
         }
       });
     }
+    return;
   }
 }
 
@@ -92,7 +96,7 @@ global.piscobot.hears(
         var users = [];
         var promises = [];
         team.members.forEach(function(member) {
-          if(member.is_bot === false && member.deleted === false) {
+          if(member.is_bot === false && member.deleted === false && member.id !== 'USLACKBOT') {
             var promise = new Promise(function(resolve, reject) {
               global.piscobot.storage.users.get(member.id, function(err, user) {
                 if(err) {
@@ -126,7 +130,7 @@ global.piscobot.hears(
             fields.push({
               'title': user.username,
               'value': user.points,
-              'short': false
+              'short': true
             });
           }
           var response = {
