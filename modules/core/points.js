@@ -62,6 +62,9 @@ function modifyPoints(bot, message, value) {
             user.points = 0;
           }
           user.points += value;
+          if (user.points < 0) {
+            user.points = 0;
+          }
           global.piscobot.storage.users.save(user, function(err) {
             if(!err) {
               notifyRecipient(bot, message, value, user);
@@ -103,7 +106,7 @@ global.piscobot.hears(
                   return reject(err);
                 } else {
                   if(user && user !== null) {
-                    if(!user.points) {
+                    if(!user.points || user.points < 0) {
                       user.points = 0;
                     }
                     user.username = member.name;
