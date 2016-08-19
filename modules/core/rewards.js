@@ -86,7 +86,7 @@ var askRewardTitle = function(response, convo, reward, editing) {
 
 var askRewardDescription = function(response, convo, reward, editing) {
   convo.ask(
-    'How would you describe your reward?\n(Example: "Grab a cup of coffee at Starbucks on us.")',
+    'How would you describe your reward?\n(Example: _"Grab a cup of coffee at Starbucks on us."_)',
     function(response, convo) {
       exitConvo(response, convo);
       reward.description = response.text;
@@ -102,7 +102,7 @@ var askRewardDescription = function(response, convo, reward, editing) {
 
 var askRewardValue = function(response, convo, reward) {
   convo.ask(
-    'How many points is your reward worth?\n(Example: "25 points". ' +
+    'How many points is your reward worth?\n(Example: _"25 points"_. ' +
     'For reference, $5 ≈ 25 points, but your mileage may vary.)',
     function(response, convo) {
       exitConvo(response, convo);
@@ -191,10 +191,10 @@ function editReward(response, convo, reward) {
 }
 
 function exitConvo(response, convo) {
-  var quitMessages = ['exit', 'quit', 'stop', 'end']
+  var quitMessages = ['exit', 'quit', 'stop', 'end'];
   if(_.contains(quitMessages, response.text)) {
     convo.say('Alright, another time, then. :sweat_smile:');
-    convo.stop();
+    convo.stop(); 
   }
 }
 
