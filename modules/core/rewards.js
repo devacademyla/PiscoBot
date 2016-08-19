@@ -38,10 +38,6 @@ global.piscobot.hears(['^reward($|s$)', '^reward( |s )help'], ['direct_message',
             'value': 'Add a reward to the list.',
             'short': false
           }, {
-            'title': '\"edit reward\"',
-            'value': 'Change one of your rewards.',
-            'short': false
-          }, {
             'title': '\"delete reward\"',
             'value': 'Delete one of your rewards.',
             'short': false
@@ -59,18 +55,18 @@ global.piscobot.hears(['^reward($|s$)', '^reward( |s )help'], ['direct_message',
 
 var createReward = function(response, convo) {
   convo.sayFirst(
-    'Alright, let\'s make a new reward! (You can say "quit" at any time to back out.)');
+    'Alright, let\'s make a new reward! (You can say "exit" at any time to back out.)');
   var reward = {
     title: '',
     description: '',
     price: 0,
     owner: convo.source_message.user
   };
-  askRewardName(response, convo, reward);
+  askRewardTitle(response, convo, reward);
   convo.next();
 };
 
-var askRewardName = function(response, convo, reward, editing) {
+var askRewardTitle = function(response, convo, reward, editing) {
   convo.ask(
     'What\'s the name of your reward?\n(Examples: _"$5 Starbucks coffee"_,' +
     ' _"$5 Humble Bundle/Steam game"_ or _"Day off of work"_.)',
@@ -106,7 +102,8 @@ var askRewardDescription = function(response, convo, reward, editing) {
 
 var askRewardValue = function(response, convo, reward) {
   convo.ask(
-    'How many points is your reward worth?\n($5 ≈ 25 points, but your mileage may vary.)',
+    'How many points is your reward worth?\n(Example: "25 points". ' +
+    'For reference, $5 ≈ 25 points, but your mileage may vary.)',
     function(response, convo) {
       exitConvo(response, convo);
       var number = response.text.replace(/\D+/g, '');
@@ -131,7 +128,7 @@ var confirmReward = function(response, convo, reward) {
       'text': reward.description,
       'fields': [{
         'title': 'Value:',
-        'value': reward.value + ' points',
+        'value': reward.price + ' points',
         'short': false
       }],
       'footer': 'PiscoBot',
@@ -151,8 +148,7 @@ var confirmReward = function(response, convo, reward) {
   }, {
     pattern: convo.task.bot.utterances.no,
     callback: function(response, convo) {
-      // TODO: Ask for editing things
-      convo.say('WIP: Edit function');
+      editReward(response, convo, reward);
       convo.next();
     }
   }, {
@@ -165,17 +161,58 @@ var confirmReward = function(response, convo, reward) {
   }]);
 };
 
+function editReward(response, convo, reward) {
+  convo.ask('What do you want to change? Say "title", "description" or "price" to choose.', [{
+    pattern: /title/,
+    callback: function(response, convo) {
+      askRewardTitle(response, convo, reward, true);
+      convo.next();
+    }
+  }, {
+    pattern: /description/,
+    callback: function(response, convo) {
+      askRewardDescription(response, convo, reward, true);
+      convo.next();
+    }
+  }, {
+    pattern: /price/,
+    callback: function(response, convo) {
+      askRewardValue(response, convo, reward, true);
+      convo.next();
+    }
+  }, {
+    default: true,
+    callback: function(response, convo) {
+      convo.say('I didn\'t quite get that.');
+      convo.repeat();
+      convo.next();
+    }
+  }]);
+}
+
 function exitConvo(response, convo) {
-  if(response.text === 'exit') {
+  var quitMessages = ['exit', 'quit', 'stop', 'end']
+  if(_.contains(quitMessages, response.text)) {
     convo.say('Alright, another time, then. :sweat_smile:');
     convo.stop();
   }
 }
 
 function saveReward(convo, reward) {
-  global.piscobot.storage.teams.get(convo.source_message.team, function(err, team) {
+  global.piscobot.storage.teams.get(convo.task.source_message.team, function(err, team) {
     if(!err) {
+      if(_.isEmpty(team) || _.isNull(team)) {
+        team = {
+          id: convo.task.source_message.team
+        };
+      }
+      if(_.isEmpty(team.rewards) || _.isNull(team.rewards)) {
+        team.rewards = [];
+      }
       team.rewards.push(reward);
+      team.rewards.sort(function(a, b) {
+        return b.title - a.title;
+      });
       global.piscobot.storage.teams.save(team, function(err) {
         if(!err) {
           convo.say('Cool, reward saved!');
