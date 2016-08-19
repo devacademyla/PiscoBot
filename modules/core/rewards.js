@@ -194,7 +194,7 @@ function exitConvo(response, convo) {
   var quitMessages = ['exit', 'quit', 'stop', 'end'];
   if(_.contains(quitMessages, response.text)) {
     convo.say('Alright, another time, then. :sweat_smile:');
-    convo.stop(); 
+    convo.stop();
   }
 }
 
@@ -223,6 +223,46 @@ function saveReward(convo, reward) {
   });
 }
 
+var listRewards = function(response, convo) {
+  global.piscobot.storage.teams.get(convo.task.source_message.team, function(err, team) {
+    if(!err) {
+      if(_.isEmpty(team) || _.isNull(team) || _.isEmpty(team.rewards)) {
+        convo.say('Doesn\'t seem like your team has any rewards available! ');
+        convo.next();
+      } else {
+        var fields = [];
+        for (var reward of team.rewards) {
+          var field = {
+            title: reward.title,
+            value: reward.price + ' points (<@'+ reward.owner + '>)',
+            short: true
+          };
+          fields.push(field);
+        }
+        var rewardListAttachment = {
+          'attachments': [{
+            'fallback': 'Here\'s a list of rewards that I found for your team:',
+            'pretext': 'Here\'s a list of rewards that I found for your team:',
+            'title': 'Rewards',
+            'text': 'Get yourself some prizes!',
+            'fields': fields,
+            'footer': 'PiscoBot',
+            'footer_icon': 'https://raw.githubusercontent.com/' +
+              'twitter/twemoji/gh-pages/72x72/1f379.png',
+            'color': '#FF7300'
+          }]
+        };
+        convo.say(rewardListAttachment);
+        convo.next();
+      }
+    } else {
+      convo.say('There was an error trying to get the rewards.\nHere\'s what went wrong: ' +
+        err);
+      convo.next();
+    }
+  });
+};
+
 global.piscobot.hears(['^add reward', '^reward add'], ['direct_message', 'direct_mention'],
   function(bot, message) {
     helpers.chat.pmCheck(bot, message);
@@ -238,8 +278,9 @@ global.piscobot.hears(['^redeem reward( |s )', '^reward redeem'], ['direct_messa
   }
 );
 
-global.piscobot.hears(['^reward(s | )list'], ['direct_message', 'direct_mention'],
+global.piscobot.hears(['^reward(s | )list', 'list rewards?'], ['direct_message', 'direct_mention'],
   function(bot, message) {
-    bot.reply(message, 'WIP');
+    helpers.chat.pmCheck(bot, message);
+    bot.startPrivateConversation(message, listRewards);
   }
 );
