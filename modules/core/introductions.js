@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Introductions',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'introduction',
-  version: 1.0,
   description: 'Have PiscoBot introduce itself.',
   module: 'Core'
 };

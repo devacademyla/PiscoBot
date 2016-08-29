@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Help',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'help',
-  version: 1.0,
   description: 'General help function to learn how PiscoBot works.',
   module: 'Core'
 };

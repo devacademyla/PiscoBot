@@ -5,7 +5,6 @@ var commandDescription = {
   name: '',
   author: '',
   trigger: '',
-  version: 1.0,
   description: '',
   module: ''
 };

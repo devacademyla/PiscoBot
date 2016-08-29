@@ -4,7 +4,6 @@ var commandDescription = {
   name: '8ball',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: '8ball [question]',
-  version: 1.0,
   description: 'Seek advice from the Gods of Chance.',
   module: 'Fun'
 };

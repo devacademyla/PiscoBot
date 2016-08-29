@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Giphy Me',
   author: 'Deiby Toralva [@deibytb]',
   trigger: 'giphy me [search terms]',
-  version: 1.0,
   description: 'Search for a gif on Giphy',
   module: 'Fun'
 };

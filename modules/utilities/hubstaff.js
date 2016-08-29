@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Hubstaff Report',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: '[weekly/daily] hubstaff report',
-  version: 1.0,
   description: 'Get a list of the top contributors to your team\'s Hubstaff hours.',
   module: 'Utilities'
 };

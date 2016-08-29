@@ -8,7 +8,6 @@ var commandDescription = {
   name: 'Example Script',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'example',
-  version: 1.0,
   description: 'Use this space to describe how to use your function.',
   module: 'Example'
 };

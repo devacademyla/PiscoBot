@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Spotify Me',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'spotify me [search term]',
-  version: 1.0,
   description: 'Search for a song on Spotify.',
   module: 'Fun'
 };

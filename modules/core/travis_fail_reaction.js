@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Travis CI Build Fails',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: '',
-  version: 1.0,
   description: 'Have the bot react to a build failing on Travis CI.',
   module: 'Core'
 };
