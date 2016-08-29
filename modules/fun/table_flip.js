@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Table Flip',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'table flip',
-  version: 1.0,
   description: '(╯°□°）╯︵ ┻━┻',
   module: 'Fun'
 };

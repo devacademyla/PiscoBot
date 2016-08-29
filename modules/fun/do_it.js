@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Do It',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'do it',
-  version: 1.0,
   description: 'Motivate your team using Shia Lebouf.',
   module: 'Fun'
 };

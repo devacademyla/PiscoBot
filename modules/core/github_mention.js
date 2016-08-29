@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'GitHub Mention',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: '',
-  version: 1.0,
   description: 'Have the bot react to new commits on GitHub.',
   module: 'Core'
 };

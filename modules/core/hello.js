@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Hello',
   author: 'HowdyAI [@HowdyAI]',
   trigger: 'hello',
-  version: 1.3,
   description: 'Say hello to PiscoBot!',
   module: 'Core'
 };

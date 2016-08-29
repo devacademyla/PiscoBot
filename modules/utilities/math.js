@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Math',
   trigger: 'calc',
   author: 'HowdyAI [@howdyai]',
-  version: 1.4,
   text: 'Make PiscoBot crunch some numbers for you.',
   module: 'Utilities'
 };

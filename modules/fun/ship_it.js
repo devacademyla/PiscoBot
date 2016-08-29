@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Ship It',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'ship it',
-  version: 1.0,
   description: 'Celebrate the launch of a new release with squirrels.',
   module: 'Fun'
 };
