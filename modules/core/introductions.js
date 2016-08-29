@@ -10,14 +10,14 @@ var commandDescription = {
 
 global.botHelp.push(commandDescription);
 
+var helpers = require('./../../helpers');
+
 global.piscobot.hears(
   ['introduce yourself', '(who|what) are you', 'intro(duction)?'], ['direct_message',
     'direct_mention'
   ],
   function(bot, message) {
-    if(message.event !== 'direct_message') {
-      bot.reply(message, 'Just sent you a PM about that, <@' + message.user + '>. :grin:');
-    }
+    helpers.chat.pmCheck(bot, message);
     bot.startPrivateConversation(message,
       function(err, dm) {
         var introduction = {
