@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Who Am I',
   trigger: 'who am i',
   author: 'HowdyAI [@howdyai]',
-  version: 1.4,
   text: 'Ask the bot what your name is.',
   module: 'Core'
 };

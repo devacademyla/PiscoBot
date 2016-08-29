@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Points',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: ':pisco:/:poop:',
-  version: 1.0,
   description: 'Give or take away points from other users.',
   module: 'Core'
 };
@@ -23,19 +22,6 @@ function notifyRecipient(bot, message, value, user) {
     }
     notif += '\nYou have `' + user.points + '` points now.';
     convo.say(notif);
-    convo.next();
-  });
-}
-
-function notifyGiver(bot, message, value, user) {
-  bot.startPrivateConversation(message, function(err, convo) {
-    var info = 'You just gave ';
-    if(value > 0) {
-      info += 'a shot of Pisco to <@' + user.id + '>. :tropical_drink: :smile:';
-    } else if(value < 0) {
-      info += 'some :shit: to <@' + user.id + '>. :joy:';
-    }
-    convo.say(info);
     convo.next();
   });
 }
@@ -62,13 +48,12 @@ function modifyPoints(bot, message, value) {
             user.points = 0;
           }
           user.points += value;
-          if (user.points < 0) {
+          if(user.points < 0) {
             user.points = 0;
           }
           global.piscobot.storage.users.save(user, function(err) {
             if(!err) {
               notifyRecipient(bot, message, value, user);
-              notifyGiver(bot, message, value, user);
             }
           });
         }
@@ -99,7 +84,8 @@ global.piscobot.hears(
         var users = [];
         var promises = [];
         team.members.forEach(function(member) {
-          if(member.is_bot === false && member.deleted === false && member.id !== 'USLACKBOT') {
+          if(member.is_bot === false && member.deleted === false && member.id !==
+            'USLACKBOT') {
             var promise = new Promise(function(resolve, reject) {
               global.piscobot.storage.users.get(member.id, function(err, user) {
                 if(err) {

@@ -1,12 +1,11 @@
 // PiscoBot Script
 
 var commandDescription = {
-  name: '',
-  author: '',
-  trigger: '',
-  version: 1.0,
-  description: '',
-  module: ''
+  name: 'Introductions',
+  author: 'Daniel Gallegos [@that_taco_guy]',
+  trigger: 'introduction',
+  description: 'Have PiscoBot introduce itself.',
+  module: 'Core'
 };
 
 global.botHelp.push(commandDescription);
@@ -23,7 +22,7 @@ global.piscobot.hears(
       function(err, dm) {
         var introduction = {
           'attachments': [{
-            'fallback': 'PiscoBot Intro Text',
+            'fallback': 'Hey, there! I\'m PiscoBot!',
             'color': '#FF7300',
             'pretext': 'Hey, there! I\'m PiscoBot!',
             'author_name': 'devAcademy',

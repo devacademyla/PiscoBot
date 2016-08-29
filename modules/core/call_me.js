@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Call Me',
   author: 'HowdyAI [@HowdyAI]',
   trigger: 'call me [nickname]',
-  version: 1.0,
   description: 'Add a nickname to yourself.',
   module: 'Core'
 };

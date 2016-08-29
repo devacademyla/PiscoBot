@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Thank You',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'thank you',
-  version: 1.0,
   description: 'You\'re welcome!',
   module: 'Misc'
 };

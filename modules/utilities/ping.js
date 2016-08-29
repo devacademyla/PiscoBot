@@ -4,7 +4,6 @@ var commandDescription = {
   name: 'Ping',
   author: 'Daniel Gallegos [@that_taco_guy]',
   trigger: 'ping',
-  version: 1.0,
   description: 'Ping the bot!',
   module: 'Utilities'
 };
