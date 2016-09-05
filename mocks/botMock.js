@@ -1,3 +1,6 @@
+/* eslint-disable */
+// This is from the BotMock project by amplicity.
+// https://github.com/amplicity/BotMock
 'use strict';
 var api = require('./apiMock');
 
@@ -347,3 +350,4 @@ module.exports = {
     controller: Controller,
     convo: Convo
 }
+/* eslint-enable */

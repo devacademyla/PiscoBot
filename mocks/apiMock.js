@@ -1,3 +1,6 @@
+/* eslint-disable */
+// This is from the BotMock project by amplicity.
+// https://github.com/amplicity/BotMock
 'use strict';
 
 class Data {
@@ -168,3 +171,4 @@ class Data {
 }
 
 module.exports = Data
+/* eslint-enable */

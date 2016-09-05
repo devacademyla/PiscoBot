@@ -4,7 +4,7 @@
   "description": "Please enjoy responsibly.",
   "main": "bot.js",
   "scripts": {
-    "test": "eslint . --env node --ignore-path .gitignore",
+    "test": "find ./test -name '*Spec.js' | xargs mocha -t 2000 -R spec && eslint . --env node --ignore-path .gitignore",
     "start": "node bot.js"
   },
   "repository": {
